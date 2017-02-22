@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.print.PrintHelper;
 import android.util.AttributeSet;
@@ -15,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -200,6 +202,16 @@ public class DoodleView extends View {
     public void saveImage() {
         // Имя состоит из префикса "Doodlz" и текущего времени
         final String name = "Doodlz" + System.currentTimeMillis() + ".jpg";
+
+        // Ручная инициализация папки DCIM
+        // Нужно, чтобы не пришлось сперва делать пикчу на приложение камеры перед юзаньем приложения
+        File sdcard = Environment.getExternalStorageDirectory();
+        if (sdcard != null) {
+            File mediaDir = new File(sdcard, "DCIM/Camera");
+            if (!mediaDir.exists()) {
+                mediaDir.mkdirs();
+            }
+        }
 
         // Сохранение изображения в галерее устройства
         String location = MediaStore.Images.Media.insertImage(
