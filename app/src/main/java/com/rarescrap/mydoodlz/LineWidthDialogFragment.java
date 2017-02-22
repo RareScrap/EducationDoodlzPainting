@@ -95,7 +95,7 @@ public class LineWidthDialogFragment extends DialogFragment {
 
                     // Стирание объекта Bitmap и перерисовка линии
                     bitmap.eraseColor(
-                            getResources().getColor(android.R.color.transparent, getContext().getTheme())
+                            getResources().getColor(android.R.color.transparent) // Используется устаревший метод! Норм метод - .getColor(android.R.color.transparent, getContext().getTheme())
                     ); // TODO: Что за transparent?
                     canvas.drawLine(30, 50, 370, 50, p);
                     widthImageView.setImageBitmap(bitmap);

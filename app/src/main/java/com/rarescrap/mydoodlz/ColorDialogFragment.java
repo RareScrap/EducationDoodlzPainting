@@ -13,10 +13,6 @@ import android.view.View;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
-import com.rarescrap.mydoodlz.DoodleView;
-import com.rarescrap.mydoodlz.MainActivityFragment;
-import com.rarescrap.mydoodlz.R;
-
 // Класс диалогового окна выбора цвета
 public class ColorDialogFragment extends DialogFragment {
     private SeekBar alphaSeekBar;

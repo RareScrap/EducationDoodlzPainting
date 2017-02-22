@@ -3,6 +3,9 @@ package com.rarescrap.mydoodlz;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
+
+//import android.support.v4.content.ContextCompat;
+
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
@@ -176,6 +179,13 @@ public class MainActivityFragment extends Fragment {
     private void saveImage() {
         // Проверить, есть ли у приложения разрешение,
         // необходимое для сохранения
+
+        // Игнорирование запроса разрешения на старых ОС
+        if (android.os.Build.VERSION.SDK_INT < 23) {
+            doodleView.saveImage();
+            return;
+        }
+
         if (getContext().checkSelfPermission(
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
                 PackageManager.PERMISSION_GRANTED) {
